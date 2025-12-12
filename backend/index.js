@@ -19,6 +19,9 @@ app.get('/api/health', (req, res) => {
 
 app.use('/users', usersController);
 app.use('/auth', authController);
+app.use('/auth/register', authController);
+app.use('/auth/login', authController);
+app.use('/auth/profile', authController);
 
 sequelize.authenticate()
   .then(() => {

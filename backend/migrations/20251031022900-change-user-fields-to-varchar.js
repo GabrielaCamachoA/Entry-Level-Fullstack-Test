@@ -9,6 +9,14 @@ export async function up(queryInterface, Sequelize) {
     type: Sequelize.STRING(255),
     allowNull: false
   });
+  await queryInterface.addColumn('users', 'nombre', {
+    type: Sequelize.STRING(255),
+    allowNull: false
+  });
+  await queryInterface.addColumn('users', 'apellidos', {
+    type: Sequelize.STRING(255),
+    allowNull: false
+  });
 }
 
 export async function down(queryInterface, Sequelize) {

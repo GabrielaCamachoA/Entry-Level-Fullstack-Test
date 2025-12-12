@@ -4,6 +4,8 @@ import Login from './components/Login';
 import Profile from './components/Profile';
 import { ROUTES } from './routes';
 import './App.css';
+import Register from './components/Register';
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -11,7 +13,9 @@ function App() {
   const handleLogin = (userData) => {
     setUser(userData);
   };
-
+ const handleRegister = (userData) => {
+    setUser(userData);
+  };
   return (
     <BrowserRouter>
       <Routes>
@@ -22,6 +26,9 @@ function App() {
         <Route 
           path={ROUTES.PROFILE}
           element={user ? <Profile user={user} /> : <Navigate to={ROUTES.HOME} replace />} 
+        />
+        <Route path={ROUTES.REGISTER}
+          element= {user ? <Navigate to={ROUTES.PROFILE} replace /> : <Register onRegister={handleRegister} />}
         />
       </Routes>
     </BrowserRouter>

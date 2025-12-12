@@ -1,11 +1,22 @@
-import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { Container, Box, TextField, Button, Typography, Paper } from '@mui/material';
-import { ROUTES } from '../routes';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useForm, Controller } from "react-hook-form";
+import {
+  Container,
+  Box,
+  TextField,
+  Button,
+  Typography,
+  Paper
+} from "@mui/material";
 
-function Login({ onLogin }) {
-  const { control, handleSubmit, formState: { errors }, setError } = useForm();
+function Register({onRegister}) {
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm();
 
   const onSubmit = async (data) => {
     // Check if both email and password are correct
@@ -36,25 +47,71 @@ function Login({ onLogin }) {
       <Box
         sx={{
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <Paper elevation={3} sx={{ padding: 4, width: '100%' }}>
+        <Paper elevation={3} sx={{ padding: 4, width: "100%" }}>
           <Typography component="h1" variant="h5" align="center" gutterBottom>
-            Iniciar sesión
+            Crear Cuenta
           </Typography>
-          <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit(onSubmit)}
+            sx={{ mt: 1 }}
+          >
+            <Controller
+              name="nombre"
+              control={control}
+              defaultValue=""
+              rules={{
+                required: "El nombre es requerido",
+              }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  margin="normal"
+                  fullWidth
+                  label="Nombre"
+                  type="text"
+                  autoComplete="nombre"
+                  autoFocus
+                  error={!!errors.nombre}
+                  helperText={errors.email?.message}
+                />
+              )}
+            />
+            <Controller
+              name="apellidos"
+              control={control}
+              defaultValue=""
+              rules={{
+                required: "El apellido es requerido",
+              }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  margin="normal"
+                  fullWidth
+                  label="Apellidos"
+                  type="text"
+                  autoComplete="apellidos"
+                  autoFocus
+                  error={!!errors.apellidos}
+                  helperText={errors.email?.message}
+                />
+              )}
+            />
             <Controller
               name="email"
               control={control}
               defaultValue=""
               rules={{
-                required: 'El correo electrónico es requerido',
+                required: "El correo electrónico es requerido",
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: 'Dirección de correo electrónico inválida',
+                  message: "Dirección de correo electrónico inválida",
                 },
               }}
               render={({ field }) => (
@@ -76,7 +133,7 @@ function Login({ onLogin }) {
               control={control}
               defaultValue=""
               rules={{
-                required: 'La contraseña es requerida',
+                required: "La contraseña es requerida",
               }}
               render={({ field }) => (
                 <TextField
@@ -97,9 +154,8 @@ function Login({ onLogin }) {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Iniciar sesión
+             Crear cuenta
             </Button>
-            <Link to={ROUTES.REGISTER}> ¿No tienes cuenta? Registrate</Link>
           </Box>
         </Paper>
       </Box>
@@ -107,4 +163,4 @@ function Login({ onLogin }) {
   );
 }
 
-export default Login;
+export default Register;

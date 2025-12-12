@@ -14,6 +14,14 @@ export default (sequelize, DataTypes) => {
       autoIncrement: true,
       allowNull: false
     },
+    nombre: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
+    apellidos: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
     email: {
       type: DataTypes.STRING(255),
       allowNull: false
